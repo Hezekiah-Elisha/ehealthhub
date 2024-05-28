@@ -16,24 +16,26 @@ export default function DashboardHeader() {
       navigate('/signin')
     }
     
-    try {
-      const config = {
-        headers: {
-          'Content-Type': 'application',
-          'Authorization': `Bearer ${currentUser.accessToken}`
-        }
-      }
-      instance.get('/user', config)
-        .then((response) => {
-            setuser(response.data)
-          }
-        )
-        .catch((error) => {
-          console.log(error)
-        })
-    } catch (error) {
-      console.log(error)
-    }
+    // try {
+    //   const config = {
+    //     headers: {
+    //       'Content-Type': 'application',
+    //       'Authorization': `Bearer ${currentUser.accessToken}`
+    //     }
+    //   }
+    //   instance.get('/user', config)
+    //     .then((response) => {
+    //         setuser(response.data)
+    //       }
+    //     )
+    //     .catch((error) => {
+    //       console.log(error)
+    //     })
+    // } catch (error) {
+    //   console.log(error)
+    // }
+    console.log(currentUser.user);
+    setuser(currentUser.user);
 
   },[]);
 
@@ -63,7 +65,7 @@ export default function DashboardHeader() {
         </div>
         <div className="flex items-center space-x-4">
           <a href="/dashboard/profile" className="text-white">Hi, <span className='capitalize'>{user.name}</span></a>
-          <p className="text-white" onClick={handleLogout}>Logout</p>
+          <p className="text-white hover:text-red-600 cursor-pointer" onClick={handleLogout}>Logout</p>
         </div>
       </div>
     </nav>

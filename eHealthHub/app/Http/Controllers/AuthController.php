@@ -25,6 +25,7 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
+            'role'=> 'required',
             'password' => 'required',
             'c_password' => 'required|same:password'
         ]);
@@ -39,6 +40,7 @@ class AuthController extends Controller
         $user = new User([
             'name' => $request->name,
             'email' => $request->email,
+            'role' => $request->role,
             'password' => bcrypt($request->password),
         ]);
 
@@ -48,6 +50,7 @@ class AuthController extends Controller
 
             return response()->json([
                 'message' => 'User created successfully',
+                'user' => $user,
                 'accessToken'=> $token,
             ], 201);
         } else {
@@ -76,6 +79,9 @@ class AuthController extends Controller
 
         $credentials = request(['email', 'password']);
 
+        // get logged in user
+        $user = User::where('email', $credentials['email'])->first();
+
         if (!Auth::attempt($credentials)){
             return response()->json([
                 'message' => 'Unauthorized'
@@ -88,6 +94,7 @@ class AuthController extends Controller
 
         return response()->json([
             'accessToken' => $token,
+            'user' => $user,
             'token_type' => 'Bearer',
         ]);
 
