@@ -14,6 +14,8 @@ export default function DashboardHeader() {
   useEffect(() => {
     if(currentUser == null){
       navigate('/signin')
+    } else{
+      setuser(currentUser.user);
     }
     
     // try {
@@ -34,9 +36,6 @@ export default function DashboardHeader() {
     // } catch (error) {
     //   console.log(error)
     // }
-    console.log(currentUser.user);
-    setuser(currentUser.user);
-
   },[]);
 
   const handleLogout = () => {
@@ -60,7 +59,7 @@ export default function DashboardHeader() {
     <nav className='w-full bg-blue-950 font-poppins static'>
       <div className="flex items-center justify-between p-4">
         <div className="flex items-center space-x-4">
-          <Link to="/" className="text-green-500 text-2xl font-bold font-ams hover:underline">The Rental Hub</Link>
+          <Link to="/" className="text-green-500 text-2xl font-bold font-ams hover:underline">eHealthHub</Link>
           <a href="/dashboard" className="text-white">Dashboard</a>
         </div>
         <div className="flex items-center space-x-4">

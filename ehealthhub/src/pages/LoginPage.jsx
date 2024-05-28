@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginStart, loginFailure, loginSuccess } from '../redux/user/userSlice'
@@ -9,6 +9,16 @@ export default function LoginPage() {
   const { loading, error } = useSelector(state => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const { currentUser } = useSelector(state => state.user);
+
+  useEffect(() => {
+
+    if(currentUser !== null){
+      navigate('/dashboard')
+    }
+  }, [currentUser])
+
 
   const handleChange = async (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value })

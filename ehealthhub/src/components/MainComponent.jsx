@@ -38,7 +38,7 @@ export default function MainComponent() {
 
                     <Route path='*' element={<h3>Nananaan</h3>}/>
                     <Route path='' element={<DashHomePage/>}/>
-                    <Route path='doctor' element={<DoctorPage/>}/>
+                    <Route path='doctor/:id' element={<DoctorPage/>}/>
                     <Route path='appointment' element={<AppointmentPage/>}/>
                     <Route path='profile' element={<ProfilePage/>}/>
                     <Route path='ambulance' element={<AmbulancePage/>}/>
