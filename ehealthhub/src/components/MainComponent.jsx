@@ -14,6 +14,8 @@ import ProfilePage from '../pages/dashboard/ProfilePage'
 import AppointmentPage from '../pages/dashboard/AppointmentPage'
 import AmbulancePage from '../pages/dashboard/AmbulancePage'
 import PatientCreationPage from '../pages/dashboard/PatientCreationPage'
+import DoctorCreationPage from '../pages/dashboard/DoctorCreationPage'
+import AllDoctorsPage from '../pages/dashboard/AllDoctorsPage'
 
 export default function MainComponent() {
     const location = useLocation()
@@ -46,6 +48,10 @@ export default function MainComponent() {
                     <Route path='settings' element={<h3>Settings</h3>}/>
                     <Route path='profile' element={<h3>Profile</h3>}/>
                     <Route path="create-patient" element={<PatientCreationPage/>}/>
+                    <Route path="create-patient/:id" element={<PatientCreationPage/>}/>
+                    <Route path="create-doctor" element={<DoctorCreationPage/>}/>
+                    <Route path="create-doctor/:id" element={<DoctorCreationPage/>}/>
+                    <Route path="all-doctors" element={<AllDoctorsPage/>}/>
                     {/* <Route path='/dashboard/postproperty' element={<PostPropertyPage/>}/> */}
                 </Route>
             </Routes>

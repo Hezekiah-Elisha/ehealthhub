@@ -50,6 +50,12 @@ export default function DashboardPage() {
                     <Link to="/dashboard/create-patient" className='block'>Create Patient</Link>
                   </li>
                   <li className='hover:bg-green-700 p-2 rounded-lg'>
+                    <Link to="/dashboard/all-doctors" className='block'>All Doctors</Link>
+                  </li>
+                  <li className='hover:bg-green-700 p-2 rounded-lg'>
+                    <Link to="/dashboard/create-doctor" className='block'>Create Doctor</Link>
+                  </li>
+                  <li className='hover:bg-green-700 p-2 rounded-lg'>
                     <Link to="/dashboard/ambulance" className='block'>Ambulance</Link>
                   </li>
                   <li className='hover:bg-green-700 p-2 rounded-lg'>
