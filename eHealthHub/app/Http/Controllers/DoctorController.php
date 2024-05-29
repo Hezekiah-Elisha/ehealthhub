@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\UpdateDoctorRequest;
 use App\Models\Doctor;
+use Illuminate\Http\Request;
 
 class DoctorController extends Controller
 {
@@ -19,9 +20,49 @@ class DoctorController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'license_number' => 'required',
+            'phone' => 'required',
+            'specialization' => 'required',
+            'bio' => 'required',
+            'profile_picture' => 'required',
+            'status' => 'required',
+        ]);
+
+        $validDoctor = Doctor::where('email', $request->email)->first();
+        if ($validDoctor) {
+            return response()->json([
+                'error' => 'Doctor already exists'
+            ]);
+        }
+
+        $doctor = new Doctor(
+            [
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'license_number' => $request->license_number,
+                'phone' => $request->phone,
+                'specialization' => $request->specialization,
+                'bio' => $request->bio,
+                'profile_picture' => $request->profile_picture,
+                'status' => $request->status,
+            ]
+            );
+        
+        if ($doctor->save()) {
+            return response()->json([
+                'success' => 'Doctor created successfully'
+            ]);
+        }
+        return response()->json([
+            'error' => 'Doctor creation failed'
+        ]);
     }
 
     /**

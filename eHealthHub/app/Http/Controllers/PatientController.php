@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePatientRequest;
 use App\Http\Requests\UpdatePatientRequest;
 use App\Models\Patient;
+use Illuminate\Http\Request;
 
 class PatientController extends Controller
 {
@@ -19,9 +20,51 @@ class PatientController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'phone_number' => 'required',
+            'address' => 'required',
+            'gender' => 'required',
+            'date_of_birth' => 'required',
+            'status' => 'required',
+            'password' => 'required',
+        ]);
+
+        $validPatient = Patient::where('email', $request->email)->first();
+        if ($validPatient) {
+            return response()->json([
+                'error' => 'Patient already exists'
+            ]);
+        }
+
+        $patient = new Patient(
+            [
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'phone_number' => $request->phone_number,
+                'address' => $request->address,
+                'gender' => $request->gender,
+                'date_of_birth' => $request->date_of_birth,
+                'status' => $request->status,
+                'password_hash' => bcrypt($request->password),
+            ]
+            );
+
+        if ($patient->save()) {
+            return response()->json([
+                'success' => 'Patient created successfully'
+            ]);
+        }
+
+        return response()->json([
+            'error' => 'Provide proper details'
+        ]);
+
     }
 
     /**
