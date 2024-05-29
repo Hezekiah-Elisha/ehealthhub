@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function AppointmentPage() {
   return (
@@ -15,7 +16,7 @@ export default function AppointmentPage() {
                                     <h2 className='text-lg'>Dr. John Doe</h2>
                                     <p className='text-sm'>Cardiologist</p>
                                 </div>
-                                <button className='text-blue-950 hover:bg-blue-950 hover:text-white p-2 rounded-lg'>Book</button>
+                                <Link to="/dashboard/doctor/1" className='text-blue-950 hover:bg-blue-950 hover:text-white p-2 rounded-lg'>Book</Link>
                             </div>
                         </div>
                     </div>

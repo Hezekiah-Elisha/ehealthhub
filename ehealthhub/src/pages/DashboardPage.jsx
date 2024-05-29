@@ -44,7 +44,7 @@ export default function DashboardPage() {
                     <Link to="/dashboard" className='block'>Home</Link>
                   </li>
                   <li className='hover:bg-green-700 p-2 rounded-lg'>
-                    <Link to="/dashboard/doctor/1" className='block'>Doctor</Link>
+                    <Link to="/dashboard/doctor/1" className='block'>Patient</Link>
                   </li>
                   <li className='hover:bg-green-700 p-2 rounded-lg'>
                     <Link to="/dashboard/ambulance" className='block'>Ambulance</Link>

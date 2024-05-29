@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MagnifyingGlassIcon, Bars3BottomRightIcon, XMarkIcon } from "@heroicons/react/20/solid";
+// import { MagnifyingGlassIcon, Bars3BottomRightIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { useEffect, useState } from "react";
 
 export default function Header() {
@@ -35,18 +35,10 @@ export default function Header() {
       <Link to="/" className="hover:underline text-4xl">
         eHealthHub
       </Link>
-      <div className="flex bg-green-700 p-2 rounded-full">
-        <input
-          type="text"
-          className="rounded-full border-none outline-none bg-green-700 px-4 text-white placeholder:text-white text-xl"
-          placeholder="Search house here"
-        />
-        <MagnifyingGlassIcon className="h-6 w-6 text-white hover:cursor-pointer" />
-      </div>
       <div className="block lg:hidden">
-        <button onClick={() => setIsOpen(!isOpen)}>
+        {/* <button onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <XMarkIcon className="h-6 w-6 text-white" /> : <Bars3BottomRightIcon className="h-6 w-6 text-white" />}
-        </button>
+        </button> */}
       </div>
       <div className={`flex lg:flex-col font-poppins flex-row justify-between w-1/2 ${isOpen ? "block" : "hidden"}`}>
         <Link to="/about" className="hover:underline">
